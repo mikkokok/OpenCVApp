@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 using Microsoft.Win32;
+using OpenCVApp.Properties;
 
-namespace OpenCVApp
+namespace OpenCVApp.Commands
 {
     internal class SelectFileCommandHandler : CommandHandlerBase
     {
@@ -13,17 +14,17 @@ namespace OpenCVApp
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Multiselect = false,
-                Title = "Open CV Application file selection"
+                Title = Resources.SelectFileTitle
             };
         }
 
         public override void Execute(object parameter)
         {
-            appendMessageToView("SelectFileCommandHandler executed");
+            AppendMessageToView("SelectFileCommandHandler executed");
             var fileDialogResult = _openFileDialog.ShowDialog();
             if (fileDialogResult != null && fileDialogResult == true)
             {
-                appendMessageToView($"Selected file {_openFileDialog.FileName}");
+                AppendMessageToView($"Selected file {_openFileDialog.FileName}");
             }
         }
     }

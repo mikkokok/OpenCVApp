@@ -1,45 +1,41 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Input;
+using OpenCVApp.Properties;
+using OpenCVApp.Utils;
 
-namespace OpenCVApp
+namespace OpenCVApp.Commands
 {
     internal class SelectFolderCommandHandler : CommandHandlerBase
     {
-        //private FolderBrowserDialog _folderBrowserDialog;
-        private readonly OpenFileDialog _openFileDialog;
+        private OpenFileDialog _openFileDialog;
+        private string _selectedFolder;
         public SelectFolderCommandHandler(MainViewModel mainViewModel, bool canExecute) : base(mainViewModel, canExecute)
+        {
+            InitializeFolderSelectionDialog();
+        }
+
+        public override void Execute(object parameter)
+        {
+            AppendMessageToView("SelectFolderCommandHandler executed");
+            var fileDialogResult = _openFileDialog.ShowDialog();
+            if (fileDialogResult != DialogResult.OK) return;
+            _selectedFolder = System.IO.Path.GetDirectoryName(_openFileDialog.FileName);
+            AppendMessageToView($"Selected folder {_selectedFolder}");
+            var testi = new FolderIterator(_selectedFolder);
+            testi.StartIterationTask();
+        }
+        private void InitializeFolderSelectionDialog()
         {
             _openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Multiselect = false,
-                Title = "Open CV Application folder selection",
+                Title = Resources.SelectFolderTitle,
                 ValidateNames = false,
                 CheckFileExists = false,
                 CheckPathExists = true,
                 FileName = "Folder selection."
             };
-            //_folderBrowserDialog = new FolderBrowserDialog
-            //{
-            //    Description = "Open CV Application folder selection",
-            //    RootFolder = Environment.SpecialFolder.MyDocuments
-            //};
-        }
-
-        public override void Execute(object parameter)
-        {
-            appendMessageToView("SelectFolderCommandHandler executed");
-            var fileDialogResult =  _openFileDialog.ShowDialog();
-            if (fileDialogResult == DialogResult.OK)
-            {
-                appendMessageToView($"Selected file {_openFileDialog.FileName}");
-            }
-            //var folderBrowserDialogResult = _folderBrowserDialog.ShowDialog();
-            //if (folderBrowserDialogResult == DialogResult.OK)
-            //{
-            //    appendMessageToView($"Selected folder is {_folderBrowserDialog.SelectedPath}");
-            //}
         }
     }
 }

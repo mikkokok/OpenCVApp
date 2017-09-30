@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace OpenCVApp
+namespace OpenCVApp.Commands
 {
     internal class CancelCommandHandler : CommandHandlerBase
     {
@@ -10,7 +10,7 @@ namespace OpenCVApp
 
         public override void Execute(object parameter)
         {
-            appendMessageToView("CancelCommandHandler executed");
+            AppendMessageToView("CancelCommandHandler executed");
         }
     }
 }

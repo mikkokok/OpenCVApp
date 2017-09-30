@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace OpenCVApp
+namespace OpenCVApp.Commands
 {
     internal class SearchCommandHandler : CommandHandlerBase
     {
@@ -13,7 +13,7 @@ namespace OpenCVApp
 
         public override void Execute(object parameter)
         {
-            appendMessageToView("Search command executed");
+            AppendMessageToView("Search command executed");
         }
     }
 }

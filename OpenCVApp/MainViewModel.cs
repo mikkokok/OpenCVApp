@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using OpenCVApp.Commands;
 
 namespace OpenCVApp
 {
@@ -13,7 +14,8 @@ namespace OpenCVApp
         public event PropertyChangedEventHandler PropertyChanged;
         private string _message;
         private readonly bool _canExecute;
-        private SelectedFile _selectedFile;
+        private string _selectedFile;
+        private string _selectedFolder;
 
         public MainViewModel()
         {

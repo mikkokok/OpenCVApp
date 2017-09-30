@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace OpenCVApp
+namespace OpenCVApp.Commands
 {
     abstract class CommandHandlerBase : ICommand
     {
         private readonly bool _canExecute;
-        private MainViewModel _mainViewModel;
+        private readonly MainViewModel _mainViewModel;
 
         protected CommandHandlerBase(MainViewModel mainViewModel, bool canExecute)
         {
@@ -23,7 +23,7 @@ namespace OpenCVApp
             return _canExecute;
         }
 
-        internal void appendMessageToView(string message)
+        internal void AppendMessageToView(string message)
         {
             _mainViewModel.Message = message;
         }

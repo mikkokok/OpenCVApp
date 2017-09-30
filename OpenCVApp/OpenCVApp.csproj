@@ -68,7 +68,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\SelectFileCommandHandler.cs" />
     <Compile Include="Commands\SelectFolderCommandHandler.cs" />
-    <Compile Include="SelectedFile.cs" />
+    <Compile Include="FileObjects\ImageFile.cs" />
+    <Compile Include="Utils\FolderIterator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,6 +114,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Emgu.CV.3.2.0.2721\build\Emgu.CV.targets" Condition="Exists('..\packages\Emgu.CV.3.2.0.2721\build\Emgu.CV.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
