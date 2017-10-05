@@ -32,7 +32,7 @@ namespace OpenCVApp.Utils
                     {
                         using (var searchableImageFile = ImageConverter.ResizeImageIfTooBig(CvInvoke.Imread(imageFile.FullName, ImreadModes.AnyColor)))
                         {
-                            var result = DrawMatchesAndFeatures.DrawMatchesAndKeyPoints(searchedImage, searchableImageFile).First();
+                            var result = DrawMatchesAndFeatures.DrawMatchesAndKeyPoints(searchableImageFile, searchedImage).First();
                             imageFileSearchResults.Add(new MatchAndFeatureResult(result.Key, result.Value, imageFile.Name, imageFile.FullName ));
                         }
                     }

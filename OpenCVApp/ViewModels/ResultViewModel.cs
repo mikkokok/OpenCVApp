@@ -11,6 +11,13 @@ namespace OpenCVApp.ViewModels
     {
         private string _title;
         private BitmapSource _resultImage;
+
+        public ResultViewModel(string title, BitmapSource resultImage)
+        {
+            _title = title;
+            _resultImage = resultImage;
+        }
+
         public string Title
         {
             get => _title;
