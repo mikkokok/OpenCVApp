@@ -61,6 +61,42 @@ namespace OpenCVApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File found {0}.
+        /// </summary>
+        internal static string FolderIterator_IterateFolderAsync_File_found {
+            get {
+                return ResourceManager.GetString("FolderIterator_IterateFolderAsync_File_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder found {0}.
+        /// </summary>
+        internal static string FolderIterator_IterateFolderAsync_Folder_found {
+            get {
+                return ResourceManager.GetString("FolderIterator_IterateFolderAsync_Folder_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was not identified as image.
+        /// </summary>
+        internal static string FolderIterator_TestForImage {
+            get {
+                return ResourceManager.GetString("FolderIterator_TestForImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error during matching file {0}.
+        /// </summary>
+        internal static string ImageMatcher_BeginSearchAsync_Error {
+            get {
+                return ResourceManager.GetString("ImageMatcher_BeginSearchAsync_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open CV Application file selection.
         /// </summary>
         internal static string SelectFileTitle {

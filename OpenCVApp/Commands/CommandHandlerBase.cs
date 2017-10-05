@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using OpenCVApp.FileObjects;
+using OpenCVApp.ViewModels;
 
 namespace OpenCVApp.Commands
 {
-    abstract class CommandHandlerBase : ICommand
+    internal abstract class CommandHandlerBase : ICommand
     {
         private readonly bool _canExecute;
-        private readonly MainViewModel _mainViewModel;
+        protected readonly MainViewModel MainViewModel;
+        private static ImageFile _selectedImageFile;
+        private static List<ImageFile> _foundImageFiles;
 
         protected CommandHandlerBase(MainViewModel mainViewModel, bool canExecute)
         {
-            _mainViewModel = mainViewModel;
+            MainViewModel = mainViewModel;
             _canExecute = canExecute;
         }
 
@@ -25,7 +26,27 @@ namespace OpenCVApp.Commands
 
         internal void AppendMessageToView(string message)
         {
-            _mainViewModel.Message = message;
+            MainViewModel.Message = message;
+        }
+
+        internal void SetFoundImageFiles(List<ImageFile> foundImageFiles)
+        {
+            _foundImageFiles = foundImageFiles;
+        }
+
+        internal List<ImageFile> GetFoundImageFiles()
+        {
+            return _foundImageFiles;
+        }
+
+        internal void SetSelectedImageFile(ImageFile file)
+        {
+            _selectedImageFile = file;
+        }
+
+        internal ImageFile GetSelectedImageFile()
+        {
+            return _selectedImageFile;
         }
 
         public abstract void Execute(object parameter);

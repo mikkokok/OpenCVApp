@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using OpenCVApp.ViewModels;
 
-namespace OpenCVApp
+namespace OpenCVApp.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

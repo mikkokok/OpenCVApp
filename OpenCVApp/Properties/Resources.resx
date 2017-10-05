@@ -123,4 +123,16 @@
   <data name="SelectFolderTitle" xml:space="preserve">
     <value>Open CV Application folder selection</value>
   </data>
+  <data name="ImageMatcher_BeginSearchAsync_Error" xml:space="preserve">
+    <value>Error during matching file {0}</value>
+  </data>
+  <data name="FolderIterator_TestForImage" xml:space="preserve">
+    <value>{0} was not identified as image</value>
+  </data>
+  <data name="FolderIterator_IterateFolderAsync_Folder_found" xml:space="preserve">
+    <value>Folder found {0}</value>
+  </data>
+  <data name="FolderIterator_IterateFolderAsync_File_found" xml:space="preserve">
+    <value>File found {0}</value>
+  </data>
 </root>

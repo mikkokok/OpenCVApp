@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+﻿using OpenCVApp.ViewModels;
 
 namespace OpenCVApp.Commands
 {
@@ -11,6 +11,7 @@ namespace OpenCVApp.Commands
         public override void Execute(object parameter)
         {
             AppendMessageToView("CancelCommandHandler executed");
+            
         }
     }
 }

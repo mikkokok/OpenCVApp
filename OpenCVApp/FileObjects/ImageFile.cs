@@ -1,25 +1,16 @@
-﻿namespace OpenCVApp.FileObjects
+﻿using System.IO;
+
+namespace OpenCVApp.FileObjects
 {
-    internal class ImageFile : System.IO.FileSystemInfo
+    internal class ImageFile
     {
-        public override string Name { get; }
-        public override bool Exists { get; }
+        public string Name { get; }
+        public string FullName { get; set; }
 
-        public bool IsPicture { get;}
-
-        public ImageFile(bool isPic, string name)
+        public ImageFile(string name, string nameWithPath)
         {
-            IsPicture = isPic;
             Name = name;
-            Exists = true;
+            FullName = nameWithPath;
         }
-
-        public override void Delete()
-        {
-            
-            
-        }
-
-
     }
 }
