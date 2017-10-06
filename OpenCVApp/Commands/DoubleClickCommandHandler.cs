@@ -6,12 +6,12 @@ using OpenCVApp.Windows;
 
 namespace OpenCVApp.Commands
 {
-    internal class DoubleClickCommandHandler : ICommand
+    internal class DoubleClickCommandHandler : CommandHandlerBase
     {
         private MainViewModel mainViewModel;
         private bool _canExecute;
 
-        public DoubleClickCommandHandler(MainViewModel mainViewModel, bool canExecute)
+        public DoubleClickCommandHandler(MainViewModel mainViewModel, bool canExecute) : base(mainViewModel, canExecute)
         {
             this.mainViewModel = mainViewModel;
             _canExecute = canExecute;
@@ -22,13 +22,13 @@ namespace OpenCVApp.Commands
             return _canExecute;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             Console.WriteLine("Doubleclick");
             try
             {
                 //$"Result Window - MatchAmount: {score}";
-                var result = (MatchAndFeatureResult)parameter;
+                var result = base.MainViewModel.DisplayResult;
                 var viewmodel = new ResultViewModel($"Result Window - MatchAmount: {result.Score}", result.GetImageAsBitmapSource());
                 var dialog = new ResultWindow(viewmodel);
                 dialog.ShowDialog();

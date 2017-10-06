@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition MaxHeight="50" MinHeight="50"/>
             </Grid.RowDefinitions>
-            <DataGrid ItemsSource="{Binding FoundImageFiles}" SelectedValue="{Binding DisplayResult}">
+            <DataGrid ItemsSource="{Binding FoundImageFiles}" SelectedValue="{Binding DisplayResult}" SelectionUnit="FullRow">
                 <DataGrid.InputBindings>
                     <MouseBinding
                         MouseAction="LeftDoubleClick"

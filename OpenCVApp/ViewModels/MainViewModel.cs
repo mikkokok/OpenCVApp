@@ -67,6 +67,18 @@ namespace OpenCVApp.ViewModels
                 OnPropertyChanged(nameof(FoundImageFiles));
             }
         }
+        private MatchAndFeatureResult _displayResult;
+
+        public MatchAndFeatureResult DisplayResult
+        {
+            get => _displayResult;
+            set
+            {
+                _displayResult = value;
+                OnPropertyChanged(nameof(DisplayResult));
+            }
+        }
+
 
 
         private void OnPropertyChanged(string message)
