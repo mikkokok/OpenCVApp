@@ -51,8 +51,9 @@ namespace OpenCVApp.Utils
                     counter++;
                     _mainViewModel.Message = $"{counter}. of {_listOfSearchableImageFiles.Count} images searched.";
                 }
+                _mainViewModel.Message = $"It took {stopwatch.Elapsed.TotalMinutes} minutes.";
             });
-            _mainViewModel.Message = $"It took {stopwatch.Elapsed.TotalMinutes} minutes.";
+            
             return imageFileSearchResults;
         }
     }
