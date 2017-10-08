@@ -29,10 +29,11 @@ namespace OpenCVApp.Commands
         private async Task DoSearchAsync()
         {
             var searchedFile = GetSelectedImageFile();
-            var imageMatcher = new ImageMatcher(GetFoundImageFiles(), searchedFile);
+            var imageMatcher = new ImageMatcher(GetFoundImageFiles(), searchedFile, MainViewModel);
             UpdateButtonContentWhenSearchingAsync();
             _foundImageFiles = await imageMatcher.BeginSearchAsync();
-            
+
+            EnableExecution();
             if (!_foundImageFiles.Any())
                 return;
 
@@ -40,7 +41,6 @@ namespace OpenCVApp.Commands
                 AppendMessageToView($"Found match: {searchedFile.Name} matches with {result.Name} ");
 
             MainViewModel.FoundImageFiles = _foundImageFiles;
-            EnableExecution();
         }
 
         public static void DisableExecution()

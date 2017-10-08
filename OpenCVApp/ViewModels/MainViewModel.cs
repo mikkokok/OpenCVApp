@@ -87,7 +87,6 @@ namespace OpenCVApp.ViewModels
         }
 
         public ICommand SearchCommand => _searchCommand ?? (_searchCommand = new SearchCommandHandler(this, _canExecute));
-        public ICommand CancelCommand => _cancelCommand ?? (_cancelCommand = new CancelCommandHandler(this, _canExecute));
         public ICommand SelectFileCommand => _selectFileCommand ?? (_selectFileCommand = new SelectFileCommandHandler(this, _canExecute));
         public ICommand SelectFolderCommand => _selectFolderCommand ?? (_selectFolderCommand = new SelectFolderCommandHandler(this, _canExecute));
         public ICommand DoubleClickCommand => _doubleClickCommandHandler ?? (_doubleClickCommandHandler = new DoubleClickCommandHandler(this, _canExecute));

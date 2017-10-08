@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="OpenCV Application" Height="400" Width="800" MinHeight="350" MinWidth="800" Background="#FFE2F5F4">
+        Title="OpenCV Application" Height="400" Width="850" MinHeight="350" MinWidth="850" Background="#FFE2F5F4">
     <Grid MinWidth="800" MinHeight="300">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400" />
@@ -29,12 +29,10 @@
                     <ColumnDefinition MaxWidth="75" MinWidth="75" />
                     <ColumnDefinition MaxWidth="75" MinWidth="75" />
                     <ColumnDefinition MaxWidth="75" MinWidth="75" />
-                    <ColumnDefinition MaxWidth="75" MinWidth="75" />
-                </Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
                 <Button Grid.Column="1" Command="{Binding SelectFolderCommand}" HorizontalContentAlignment="Left" Content="{Binding SelectFolderButtonContent}"></Button>
-                <Button Grid.Column="2" Command="{Binding SelectFileCommand}">Select file</Button>
-                <Button Grid.Column="3" Command="{Binding CancelCommand}">Cancel</Button>
-                <Button Grid.Column="4" Command="{Binding SearchCommand}" HorizontalContentAlignment="Left" Content="{Binding SearchButtonContent}"></Button>
+                <Button Grid.Column="2" Command="{Binding SelectFileCommand}" HorizontalContentAlignment="Left">Select file</Button>
+                <Button Grid.Column="3" Command="{Binding SearchCommand}" HorizontalContentAlignment="Left" Content="{Binding SearchButtonContent}"></Button>
             </Grid>
         </Grid>
         <TextBox x:Name="BigTextBlock" Grid.Column="0" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=Message}" Background="#FFE9F9E6" VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
