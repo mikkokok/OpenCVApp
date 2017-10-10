@@ -109,13 +109,12 @@
     <Compile Include="Commands\SelectFolderCommandHandler.cs" />
     <Compile Include="FileObjects\ImageFile.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Utils\DrawMatchesAndFeatures.cs" />
     <Compile Include="Utils\FindMatchResult.cs" />
     <Compile Include="Utils\FolderIterator.cs" />
     <Compile Include="Utils\ImageConverter.cs" />
     <Compile Include="Utils\ImageMatcher.cs" />
-    <Compile Include="Utils\MatchAndFeatureResult.cs" />
     <Compile Include="Utils\MatchFinder.cs" />
+    <Compile Include="Utils\MatchAndFeatureResult.cs" />
     <Compile Include="Commands\DoubleClickCommandHandler.cs" />
     <Compile Include="ViewModels\ResultViewModel.cs" />
     <Compile Include="Windows\ResultWindow.xaml.cs">

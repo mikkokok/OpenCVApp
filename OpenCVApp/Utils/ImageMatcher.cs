@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.Features2D;
+using Emgu.CV.Structure;
+using Emgu.CV.Util;
 using OpenCVApp.FileObjects;
 using OpenCVApp.Properties;
 using OpenCVApp.ViewModels;
@@ -30,18 +33,26 @@ namespace OpenCVApp.Utils
             var searchedImage = ImageConverter.ResizeImageIfTooBig(CvInvoke.Imread(_imageFileToBeSearched.FullName, ImreadModes.AnyColor));
             var counter = 0;
             var stopwatch = new Stopwatch();
-            
-            await Task.Run( () =>
+            var matchFinder = new MatchFinder();
+
+            await Task.Run(() =>
             {
                 stopwatch.Start();
+                var searchedImageDescriptorsDict = matchFinder.DetectAndComputeDescriptors(searchedImage).First();
                 foreach (var imageFile in _listOfSearchableImageFiles)
                 {
                     try
                     {
                         using (var searchableImageFile = ImageConverter.ResizeImageIfTooBig(CvInvoke.Imread(imageFile.FullName, ImreadModes.AnyColor)))
                         {
-                            var result = DrawMatchesAndFeatures.DrawMatchesAndKeyPoints(searchableImageFile, searchedImage).First();
-                            imageFileSearchResults.Add(new MatchAndFeatureResult(result.Key, result.Value, imageFile.Name, imageFile.FullName ));
+                            using (var matches = new VectorOfVectorOfDMatch())
+                            {
+                                var searchableImageDescriptorsDict = matchFinder.DetectAndComputeDescriptors(searchableImageFile).First();
+                                var matchCalculationResultDict = matchFinder.CalculateMatches(searchedImageDescriptorsDict.Key, searchableImageDescriptorsDict.Key, matches).First();
+                                var matchAmount = matchFinder.MatchAmountCalculator(matches, matchCalculationResultDict.Key);
+                                var drawnMatches = DrawMatches(searchableImageFile, searchedImage, searchableImageDescriptorsDict.Value, searchedImageDescriptorsDict.Value, matches, matchCalculationResultDict.Key);
+                                imageFileSearchResults.Add(new MatchAndFeatureResult(drawnMatches, matchAmount, imageFile.Name, imageFile.FullName));
+                            }
                         }
                     }
                     catch (Exception)
@@ -53,8 +64,15 @@ namespace OpenCVApp.Utils
                 }
                 _mainViewModel.Message = $"It took {stopwatch.Elapsed.TotalMinutes} minutes.";
             });
-            
             return imageFileSearchResults;
+        }
+        private static Mat DrawMatches(IInputArray searchableImageFile, IInputArray searchedImage, VectorOfKeyPoint searchableImageKeyPoint, VectorOfKeyPoint searchedImageKeyPoint, VectorOfVectorOfDMatch matches, IInputArray mask)
+        {
+            var result = new Mat();
+            Features2DToolbox.DrawMatches(searchableImageFile, searchedImageKeyPoint, searchedImage, searchableImageKeyPoint, matches, result, new MCvScalar(255, 255, 255), new MCvScalar(255, 255, 255), mask);
+
+            return result;
+
         }
     }
 }
